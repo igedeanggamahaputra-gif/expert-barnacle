@@ -131,7 +131,7 @@ export default function TodoApp({ session }: TodoAppProps) {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600">
+      <div className="min-h-screen bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 p-4">
         <div className="text-2xl text-white font-semibold">
           Loading your tasks...
         </div>
@@ -150,9 +150,11 @@ export default function TodoApp({ session }: TodoAppProps) {
         {/* Header */}
         <div className="flex justify-between items-center mb-8 pt-8">
           <div>
-            <h1 className="text-4xl font-bold text-white mb-2">✅ My Tasks</h1>
+            <h1 className="text-4xl font-extrabold tracking-tight text-white mb-1">
+              ✅ My Tasks
+            </h1>
             <div className="flex items-center gap-4">
-              <p className="text-white/90">
+              <p className="text-white/80 text-sm">
                 {completedCount} of {totalCount} completed
               </p>
               {totalCount > 0 && (
@@ -166,7 +168,9 @@ export default function TodoApp({ session }: TodoAppProps) {
           </div>
           <button
             onClick={signOut}
-            className="bg-white/20 text-white px-4 py-2 rounded-lg hover:bg-white/30 transition"
+            className="bg-white/20 text-white px-4 py-2 rounded-lghover:bg-white/30 active:scale-95
+            transition
+  "
           >
             Sign Out
           </button>
@@ -181,7 +185,7 @@ export default function TodoApp({ session }: TodoAppProps) {
 
         {/* Progress bar */}
         {totalCount > 0 && (
-          <div className="mb-6 bg-white/20 rounded-full h-3 overflow-hidden">
+          <div className="mb-6 bg-white/20 rounded-full h-3 overflow-hidden backdrop-blur-sm">
             <div
               className="bg-green-400 h-full transition-all duration-500 ease-out"
               style={{ width: `${completionPercentage}%` }}
@@ -197,11 +201,19 @@ export default function TodoApp({ session }: TodoAppProps) {
               value={newTask}
               onChange={handleInputChange}
               placeholder="What do you need to do?"
-              className="flex-1 px-4 py-3 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
+              className="
+              flex-1 px-4 py-3 rounded-lg text-lg
+              focus:outline-none focus:ring-2 focus:ring-purple-300
+              focus:ring-offset-2 focus:ring-offset-white
+            "
             />
             <button
               type="submit"
-              className="bg-green-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-600 transition"
+              className="
+              bg-green-500 text-white px-6 py-3 rounded-lg font-semibold
+              hover:bg-green-600 active:scale-95
+              transition
+            "
             >
               Add
             </button>
@@ -211,8 +223,14 @@ export default function TodoApp({ session }: TodoAppProps) {
         {/* Task List */}
         <div className="space-y-2">
           {tasks.length === 0 ? (
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-12 text-center text-white">
-              <p className="text-2xl mb-2">🎯</p>
+            <div
+              className="
+            bg-white/10 backdrop-blur-md
+            rounded-xl p-14
+            text-center text-white
+          "
+            >
+              <p className="text-4xl mb-3">🎯</p>
               <p className="text-xl font-semibold mb-2">No tasks yet!</p>
               <p className="text-white/80">
                 Add your first task above to get started
@@ -222,7 +240,12 @@ export default function TodoApp({ session }: TodoAppProps) {
             tasks.map((task) => (
               <div
                 key={task.id}
-                className="bg-white rounded-lg p-4 shadow-lg flex items-center gap-4 hover:shadow-xl transition group"
+                className="bg-white/95 backdrop-blur
+                rounded-xl p-5
+                shadow-md hover:shadow-xl
+                flex items-center gap-4
+                transition-all duration-300 hover:-translate-y-0.5
+                group"
               >
                 <input
                   type="checkbox"
